@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fafc82 !important;
+  /* background-image: linear-gradient(to right,
+        #ebe985 10%,
+        #ffffff 30%,
+        #f0f3c0 50%,
+        #ffffff 70%,
+        #ebe985); */
+}
+/*# sourceMappingURL=index.css.map */
