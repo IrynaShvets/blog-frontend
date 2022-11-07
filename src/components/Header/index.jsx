@@ -1,26 +1,25 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Button from "@mui/material/Button";
-import { toast } from "react-toastify";
-import styles from "./Header.module.scss";
-import Container from "@mui/material/Container";
 import { useDispatch, useSelector } from "react-redux";
+import styles from "./Header.module.scss";
 import { logout, selectIsAuth } from "../../redux/slices/auth";
-import Background from "../../images/blog3.jpg";
+import Background from "../../images/bitcoin.jpg";
 
-const sectionStyle = {
-  width: "200px",
-  height: "55px",
-  borderRadius: "10px",
+const sectionBackgroundStyle = {
+  width: "100%",
+  height: "95vh",
+  borderRadius: "20px",
 };
 
-const imageStyle = {
+const backgroundStyle = {
   backgroundImage: `url(${Background})`,
   backgroundRepeat: "no-repeat",
   backgroundPosition: "center",
-  backgroundSize: "200px 55px",
+  backgroundSize: "100% 95vh",
   borderRadius: "10px",
   boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.35)",
+  marginBottom: "40px",
+  border: "1px solid #fff",
 };
 
 export const Header = () => {
@@ -28,7 +27,7 @@ export const Header = () => {
   const isAuth = useSelector(selectIsAuth);
 
   const onClickLogout = () => {
-    if (window.confirm("Ви дійсно хочете вийти?")) {
+    if (window.confirm("Do you really want to log out?")) {
       dispatch(logout());
       window.localStorage.removeItem("token");
     }
@@ -36,42 +35,54 @@ export const Header = () => {
 
   return (
     <>
-      <div className={styles.root}>
-        <Container maxWidth="lg">
-          <div className={styles.inner}>
-            <Link /* className={styles.logo} */ to="/">
-              <section style={imageStyle}>
-                <div style={sectionStyle}></div>
-              </section>
-            </Link>
-            <div className={styles.buttons}>
+      <section style={backgroundStyle}>
+        <div style={sectionBackgroundStyle}>
+          <div className={styles.wrapper}>
+            <div className="animate__animated animate__fadeInLeft animate__slow	2s">
+              <Link className={styles.logo} to="/">
+                Blog
+              </Link>
+            </div>
+            <br />
+            <div className={styles.links}>
               {isAuth ? (
                 <>
-                  <Link to="/add-post">
-                    <Button variant="contained">Написати статтю</Button>
-                  </Link>
-                  <Button
-                    onClick={onClickLogout}
-                    variant="contained"
-                    color="error"
-                  >
-                    Вийти
-                  </Button>
+                  <div className="animate__animated animate__fadeInLeft animate__slow	2s">
+                    <Link className={styles.logo} to="/add-post">
+                      <span variant="contained">Write an article</span>
+                    </Link>
+                  </div>
+                  <br />
+                  <div className="animate__animated animate__fadeInLeft animate__slow	2s">
+                    <span
+                      className={styles.logout}
+                      onClick={onClickLogout}
+                      variant="contained"
+                      color="error"
+                    >
+                      Logout
+                    </span>
+                  </div>
                 </>
               ) : (
                 <>
-                  <Link to="/login">
-                    <Button variant="outlined">Увійти</Button>
-                  </Link>
-                  <Link to="/register">
-                    <Button variant="contained">Створити аккаунт</Button>
-                  </Link>
+                  <div className="animate__animated animate__fadeInLeft animate__slow	2s">
+                    <Link className={styles.logo} to="/login">
+                      <span variant="outlined">Login</span>
+                    </Link>
+                  </div>
+                  <br />
+                  <div className="animate__animated animate__fadeInLeft animate__slow	2s">
+                    <Link className={styles.logo} to="/register">
+                      <span variant="contained">Register</span>
+                    </Link>
+                  </div>
                 </>
               )}
             </div>
           </div>
-        </Container>
-      </div>
+        </div>
+      </section>
     </>
   );
 };

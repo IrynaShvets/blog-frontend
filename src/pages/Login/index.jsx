@@ -7,7 +7,6 @@ import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-
 import styles from "./Login.module.scss";
 import { fetchAuth, selectIsAuth } from "../../redux/slices/auth";
 
@@ -31,7 +30,7 @@ export const Login = () => {
     const data = await dispatch(fetchAuth(values));
 
     if (!data.payload) {
-      return toast.info("Не вдалось авторизуватися!");
+      return toast.info("Failed to log in!");
     }
 
     if ("token" in data.payload) {
@@ -48,7 +47,7 @@ export const Login = () => {
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        Вхід до облікового запису
+        Sign in to your account
       </Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
@@ -76,7 +75,7 @@ export const Login = () => {
           variant="contained"
           fullWidth
         >
-          Увійти
+          Sign in
         </Button>
       </form>
     </Paper>

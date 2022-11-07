@@ -5,8 +5,6 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Clear";
 import EditIcon from "@mui/icons-material/Edit";
 import EyeIcon from "@mui/icons-material/RemoveRedEyeOutlined";
-import CommentIcon from "@mui/icons-material/ChatBubbleOutlineOutlined";
-
 import styles from "./Post.module.scss";
 import { UserInfo } from "../UserInfo";
 import { PostSkeleton } from "./Skeleton";
@@ -34,7 +32,7 @@ export const Post = ({
   }
 
   const onClickRemove = () => {
-    if (window.confirm("Ви дійсно хочете видалити статтю?")) {
+    if (window.confirm("Are you sure you want to delete the article?")) {
       dispatch(fetchRemovePost(id));
     }
   };
@@ -60,32 +58,29 @@ export const Post = ({
           alt={title}
         />
       )}
-      <div className={styles.wrapper}>
-        <UserInfo {...user} additionalText={createdAt} />
-        <div className={styles.indention}>
-          <h2
-            className={clsx(styles.title, { [styles.titleFull]: isFullPost })}
-          >
-            {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
-          </h2>
-          <ul className={styles.tags}>
-            {tags.map((name) => (
-              <li key={name}>
-                <Link to={`/tag/${name}`}>#{name}</Link>
-              </li>
-            ))}
-          </ul>
-          {children && <div className={styles.content}>{children}</div>}
-          <ul className={styles.postDetails}>
-            <li>
+      <div class="animate__animated animate__zoomIn">
+        <div className={styles.wrapper}>
+          <div className={styles.indention}>
+            <h2
+              className={clsx(styles.title, { [styles.titleFull]: isFullPost })}
+            >
+              {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}
+            </h2>
+
+            <ul className={styles.tags}>
+              {tags.map((name) => (
+                <li key={name}>
+                  <Link to={`/tag/${name}`}>#{name}</Link>
+                </li>
+              ))}
+            </ul>
+            {children && <div className={styles.content}>{children}</div>}
+            <div className={styles.postDetails}>
               <EyeIcon />
               <span>{viewsCount}</span>
-            </li>
-            <li>
-              <CommentIcon />
-              <span>{commentsCount}</span>
-            </li>
-          </ul>
+            </div>
+          </div>
+          <UserInfo {...user} additionalText={createdAt} />
         </div>
       </div>
     </div>

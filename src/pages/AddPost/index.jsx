@@ -4,7 +4,6 @@ import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 import SimpleMDE from "react-simplemde-editor";
 import { toast } from "react-toastify";
-
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
 import { useSelector } from "react-redux";
@@ -34,7 +33,7 @@ export const AddPost = () => {
       setImageUrl(data.url);
     } catch (error) {
       console.warn(error);
-      toast.error("Помилка під час завантаження файлу!");
+      toast.error("Error loading file!");
     }
   };
 
@@ -66,7 +65,7 @@ export const AddPost = () => {
       navigate(`/posts/${_id}`);
     } catch (error) {
       console.warn(error);
-      toast.error("Помилка при створенні статті!");
+      toast.error("An error occurred while creating the article!");
     }
   };
 
@@ -82,7 +81,7 @@ export const AddPost = () => {
         })
         .catch((error) => {
           console.warn(error);
-          toast.error("Помилка при отриманні статті!");
+          toast.error("Error while receiving the article!");
         });
     }
   }, [id]);
@@ -92,7 +91,7 @@ export const AddPost = () => {
       spellChecker: false,
       maxHeight: "400px",
       autofocus: true,
-      placeholder: "Введіть текст...",
+      placeholder: "Enter the text...",
       status: false,
       autosave: {
         enabled: true,
@@ -113,7 +112,7 @@ export const AddPost = () => {
         variant="outlined"
         size="large"
       >
-        Загрузити прев'ю
+        Download preview
       </Button>
       <input
         ref={inputFileRef}
@@ -128,7 +127,7 @@ export const AddPost = () => {
             color="error"
             onClick={onClickRemoveImage}
           >
-            Видалити
+            Remove
           </Button>
           <img
             className={styles.image}
@@ -142,7 +141,7 @@ export const AddPost = () => {
       <TextField
         classes={{ root: styles.title }}
         variant="standard"
-        placeholder="Заголовок статті..."
+        placeholder="Title of the article..."
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         fullWidth
@@ -150,7 +149,7 @@ export const AddPost = () => {
       <TextField
         classes={{ root: styles.tags }}
         variant="standard"
-        placeholder="Теги"
+        placeholder="Tags"
         value={tags}
         onChange={(e) => setTags(e.target.value)}
         fullWidth
@@ -163,10 +162,10 @@ export const AddPost = () => {
       />
       <div className={styles.buttons}>
         <Button onClick={onSubmit} size="large" variant="contained">
-          {isEditing ? "Зберегти" : "Опублікувати"}
+          {isEditing ? "Save" : "Publish"}
         </Button>
         <a href="/">
-          <Button size="large">Скасування</Button>
+          <Button size="large">Cancel</Button>
         </a>
       </div>
     </Paper>

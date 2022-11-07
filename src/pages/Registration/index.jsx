@@ -6,7 +6,6 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
 import { useForm } from "react-hook-form";
 
 import styles from "./Login.module.scss";
@@ -19,7 +18,6 @@ export const Registration = () => {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
@@ -34,7 +32,7 @@ export const Registration = () => {
     const data = await dispatch(fetchRegister(values));
 
     if (!data.payload) {
-      return toast("Не вдалось зареєструватися!");
+      return toast("Failed to register!");
     }
 
     if ("token" in data.payload) {
@@ -51,16 +49,13 @@ export const Registration = () => {
   return (
     <Paper classes={{ root: styles.root }}>
       <Typography classes={{ root: styles.title }} variant="h5">
-        Створення облікового запису
+        Create an account
       </Typography>
-      <div className={styles.avatar}>
-        <Avatar sx={{ width: 100, height: 100 }} />
-      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           error={Boolean(errors.fullName?.message)}
           helperText={errors.fullName?.message}
-          {...register("fullName", { required: "Вкажіть повне ім'я" })}
+          {...register("fullName", { required: "Enter your full name" })}
           className={styles.field}
           label="Full name"
           fullWidth
@@ -69,7 +64,7 @@ export const Registration = () => {
           error={Boolean(errors.email?.message)}
           helperText={errors.email?.message}
           type="email"
-          {...register("email", { required: "Вкажіть почту" })}
+          {...register("email", { required: "Enter your email address" })}
           className={styles.field}
           label="E-Mail"
           fullWidth
@@ -78,7 +73,7 @@ export const Registration = () => {
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           type="password"
-          {...register("password", { required: "Вкажіть пароль" })}
+          {...register("password", { required: "Enter a password" })}
           className={styles.field}
           label="Password"
           fullWidth
@@ -90,7 +85,7 @@ export const Registration = () => {
           variant="contained"
           fullWidth
         >
-          Зареєструватись
+          Sign up
         </Button>
       </form>
     </Paper>

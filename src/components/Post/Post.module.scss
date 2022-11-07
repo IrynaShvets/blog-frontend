@@ -1,5 +1,3 @@
-$blue: #4361ee;
-
 .root {
   background-color: #fff;
   border: 1px solid #dedede;
@@ -7,10 +5,11 @@ $blue: #4361ee;
   overflow: hidden;
   margin-bottom: 15px;
   position: relative;
+  animation: mymove 5s infinite;
 
   &:hover {
-    border: 1px solid $blue;
-    box-shadow: 0 0 0 1px $blue;
+    border: 1px solid #251a7af1;
+    box-shadow: 0 0 0 1px #251a7af1;
 
     .editButtons {
       opacity: 1;
@@ -63,7 +62,7 @@ $blue: #4361ee;
     color: #000;
 
     &:hover {
-      color: $blue;
+      color: #251a7af1;
     }
   }
 
@@ -98,20 +97,20 @@ $blue: #4361ee;
 .postDetails {
   list-style: none;
   padding: 0;
-  margin: 20px 0 0 0;
-
-  li {
-    display: inline-flex;
+  margin: 10px 0 0 0;
+display: inline-flex;
     align-items: center;
     font-size: 14px;
     margin-right: 20px;
     opacity: 0.5;
+  
+    
 
     svg {
       font-size: 18px;
       margin-right: 5px;
     }
-  }
+  
 }
 
 .skeleton {
@@ -155,4 +154,10 @@ $blue: #4361ee;
   border-radius: 10px;
   opacity: 0;
   transition: all 0.15s ease-in-out;
+}
+
+@keyframes mymove {
+  50% {
+    box-shadow: 10px 20px 30px rgb(248, 248, 250);
+  }
 }

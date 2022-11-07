@@ -12,17 +12,14 @@ export const fetchTags = createAsyncThunk("posts/fetchTags", async () => {
   return data;
 });
 
-/* export const fetchRemovePost = createAsyncThunk(
-  "posts/fetchRemovePost",
-  async (id) => {
-    const { data } = await axios.delete(`/posts/${id}`);
-    return data;
-  }
-); */
-
 export const fetchRemovePost = createAsyncThunk(
   "posts/fetchRemovePost",
   async (id) => await axios.delete(`/posts/${id}`)
+);
+
+export const fetchComments = createAsyncThunk(
+  "posts/fetchComments",
+  async () => await axios.post("/posts")
 );
 
 const initialState = {
@@ -31,6 +28,10 @@ const initialState = {
     status: "loading",
   },
   tags: {
+    items: [],
+    status: "loading",
+  },
+  comments: {
     items: [],
     status: "loading",
   },
